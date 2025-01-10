@@ -7,6 +7,7 @@ import com.ll.sbbdoc20250109.global.exceptions.ServiceException;
 import com.ll.sbbdoc20250109.global.rq.Rq;
 import com.ll.sbbdoc20250109.global.rsData.RsData;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -21,6 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/question_list/{question_id}/answer_list")
 @Tag(name = "AnswerController", description = "API 댓글 컨트롤러")
+@SecurityRequirement(name = "bearerAuth")
 public class AnswerController {
 
     private final QuestionService questionService;

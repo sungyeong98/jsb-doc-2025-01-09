@@ -8,6 +8,8 @@ import com.ll.sbbdoc20250109.global.rq.Rq;
 import com.ll.sbbdoc20250109.global.rsData.RsData;
 import com.ll.sbbdoc20250109.standard.page.PageDto;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
 @Tag(name = "UserController", description = "API 회원 컨트롤러")
+@SecurityRequirement(name = "bearerAuth")
 public class UserController {
 
     private final QuestionService questionService;

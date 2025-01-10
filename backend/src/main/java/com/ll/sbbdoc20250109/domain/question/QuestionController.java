@@ -8,6 +8,8 @@ import com.ll.sbbdoc20250109.global.rq.Rq;
 import com.ll.sbbdoc20250109.global.rsData.RsData;
 import com.ll.sbbdoc20250109.standard.page.PageDto;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/question_list")
 @RequiredArgsConstructor
 @Tag(name = "QuestionController", description = "API 질문글 컨트롤러")
+@SecurityRequirement(name = "bearerAuth")
 public class QuestionController {
 
     private final QuestionService questionService;
