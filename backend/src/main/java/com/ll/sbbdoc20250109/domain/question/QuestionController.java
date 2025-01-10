@@ -7,6 +7,8 @@ import com.ll.sbbdoc20250109.domain.user.UserService;
 import com.ll.sbbdoc20250109.global.rq.Rq;
 import com.ll.sbbdoc20250109.global.rsData.RsData;
 import com.ll.sbbdoc20250109.standard.page.PageDto;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,12 +21,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/question_list")
 @RequiredArgsConstructor
+@Tag(name = "QuestionController", description = "API 질문글 컨트롤러")
 public class QuestionController {
 
     private final QuestionService questionService;
     private final UserService userService;
     private final Rq rq;
 
+    @Operation(summary = "글 목록 출력")
     @GetMapping
     @Transactional(readOnly = true)
     public PageDto<QuestionListDto> getList(
@@ -39,6 +43,7 @@ public class QuestionController {
         );
     }
 
+    @Operation(summary = "글 상세보기")
     @GetMapping("/{id}")
     @Transactional(readOnly = true)
     public QuestionDetailDto getDetail(@PathVariable Long id) {
@@ -64,6 +69,7 @@ public class QuestionController {
             boolean listed
     ) {}
 
+    @Operation(summary = "글 작성")
     @PostMapping
     @Transactional
     public RsData<QuestionDetailDto> createQuestion(
@@ -96,7 +102,7 @@ public class QuestionController {
             boolean listed
     ) {}
 
-
+    @Operation(summary = "글 수정")
     @PutMapping("/{id}")
     @Transactional
     public RsData<QuestionDetailDto> modifyQuestion(@PathVariable Long id,
@@ -118,6 +124,7 @@ public class QuestionController {
         );
     }
 
+    @Operation(summary = "글 삭제")
     @DeleteMapping("/{id}")
     @Transactional
     public RsData<Void> deleteQuestion(@PathVariable Long id) {
@@ -141,6 +148,7 @@ public class QuestionController {
             long totalListedCount
     ) {}
 
+    @Operation(summary = "통계정보")
     @GetMapping("/statistics")
     @Transactional(readOnly = true)
     public QuestionStatisticsResBody questionStatistics() {

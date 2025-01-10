@@ -7,6 +7,8 @@ import com.ll.sbbdoc20250109.global.exceptions.ServiceException;
 import com.ll.sbbdoc20250109.global.rq.Rq;
 import com.ll.sbbdoc20250109.global.rsData.RsData;
 import com.ll.sbbdoc20250109.standard.page.PageDto;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
+@Tag(name = "UserController", description = "API 회원 컨트롤러")
 public class UserController {
 
     private final QuestionService questionService;
@@ -38,8 +41,7 @@ public class UserController {
             String email
     ) {}
 
-
-
+    @Operation(summary = "회원가입")
     @PostMapping("/sign-up")
     @Transactional
     public RsData<SiteUserDto> signup(
@@ -67,6 +69,7 @@ public class UserController {
             String accessToken
     ) {}
 
+    @Operation(summary = "로그인")
     @PostMapping("/login")
     @Transactional(readOnly = true)
     public RsData<UserLoginResBody> login(
@@ -96,6 +99,7 @@ public class UserController {
         );
     }
 
+    @Operation(summary = "로그아웃")
     @DeleteMapping("/logout")
     @Transactional(readOnly = true)
     public RsData<Void> logout() {
@@ -108,6 +112,7 @@ public class UserController {
         );
     }
 
+    @Operation(summary = "프로필")
     @GetMapping("/profile")
     @Transactional(readOnly = true)
     public SiteUserDto profile() {
@@ -116,6 +121,7 @@ public class UserController {
         return new SiteUserDto(user);
     }
 
+    @Operation(summary = "내 글 조회")
     @GetMapping("/profile/my-list")
     @Transactional(readOnly = true)
     public PageDto<QuestionListDto> myList(

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Tag(name = "HomeController", description = "홈 컨트롤러")
 public class HomeController {
 
-    @GetMapping("/")
+    @GetMapping(value = "/", produces = "application/json;charset=utf8")
     @ResponseBody
     @Operation(summary = "메인 페이지")
     public String home() {
