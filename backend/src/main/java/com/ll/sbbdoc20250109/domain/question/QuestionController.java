@@ -7,6 +7,7 @@ import com.ll.sbbdoc20250109.domain.user.UserService;
 import com.ll.sbbdoc20250109.global.rq.Rq;
 import com.ll.sbbdoc20250109.global.rsData.RsData;
 import com.ll.sbbdoc20250109.standard.page.PageDto;
+import com.ll.sbbdoc20250109.standard.serach.SearchKeywordTypeV1;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -37,7 +38,7 @@ public class QuestionController {
     public PageDto<QuestionListDto> getList(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int pageSize,
-            @RequestParam(defaultValue = "subject") String searchKeywordType,
+            @RequestParam(defaultValue = "subject") SearchKeywordTypeV1 searchKeywordType,
             @RequestParam(defaultValue = "") String searchKeyword
     ) {
         return new PageDto<>(

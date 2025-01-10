@@ -1,6 +1,7 @@
 package com.ll.sbbdoc20250109.domain.question;
 
 import com.ll.sbbdoc20250109.domain.user.SiteUser;
+import com.ll.sbbdoc20250109.standard.serach.SearchKeywordTypeV1;
 import com.ll.sbbdoc20250109.standard.util.Ut;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -29,7 +30,7 @@ public class QuestionService {
 
     public Page<Question> findByListedPaged(
             boolean listed,
-            String searchKeywordType,
+            SearchKeywordTypeV1 searchKeywordType,
             String searchKeyword,
             int page,
             int pageSize
@@ -41,7 +42,8 @@ public class QuestionService {
         searchKeyword = "%" + searchKeyword + "%";
 
         return switch (searchKeywordType) {
-            case "content" -> questionRepository.findByListedAndContentLike(listed, searchKeyword, pageRequest);
+            case SearchKeywordTypeV1.content ->
+                    questionRepository.findByListedAndContentLike(listed, searchKeyword, pageRequest);
             default -> questionRepository.findByListedAndSubjectLike(listed, searchKeyword, pageRequest);
         };
     }
@@ -54,7 +56,7 @@ public class QuestionService {
 
     public Page<Question> findByAuthorPaged(
             SiteUser author,
-            String searchKeywordType,
+            SearchKeywordTypeV1 searchKeywordType,
             String searchKeyword,
             int page,
             int pageSize
@@ -66,7 +68,8 @@ public class QuestionService {
         searchKeyword = "%" + searchKeyword + "%";
 
         return switch (searchKeywordType) {
-            case "content" -> questionRepository.findByAuthorAndContentLike(author, searchKeyword, pageRequest);
+            case SearchKeywordTypeV1.content ->
+                    questionRepository.findByAuthorAndContentLike(author, searchKeyword, pageRequest);
             default -> questionRepository.findByAuthorAndSubjectLike(author, searchKeyword, pageRequest);
         };
     }

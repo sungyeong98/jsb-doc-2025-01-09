@@ -7,6 +7,7 @@ import com.ll.sbbdoc20250109.global.exceptions.ServiceException;
 import com.ll.sbbdoc20250109.global.rq.Rq;
 import com.ll.sbbdoc20250109.global.rsData.RsData;
 import com.ll.sbbdoc20250109.standard.page.PageDto;
+import com.ll.sbbdoc20250109.standard.serach.SearchKeywordTypeV1;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
@@ -128,7 +129,7 @@ public class UserController {
     @GetMapping("/profile/my-list")
     @Transactional(readOnly = true)
     public PageDto<QuestionListDto> myList(
-            @RequestParam(defaultValue = "subject") String searchKeywordType,
+            @RequestParam(defaultValue = "title") SearchKeywordTypeV1 searchKeywordType,
             @RequestParam(defaultValue = "") String searchKeyword,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int pageSize
